@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-<h1>Hello World from HTML</h1>
+<h1>MP3 metadata editor</h1>
+	<form method="POST" enctype="multipart/form-data" action="/upload">
+		<fieldset>
+			<legend><h3>Edit metadata: </h3></legend>
+			<h4>Select your file: </h4>
+			<input type="file" name="user_file">
+			<h4>Seperate multiple artists using a ";"</h4>
+			<input type="text" name="song_title" placeholder="Title"><br>
+			<input type="text" name="song_artist" placeholder="Artist"><br>
+			<input type="text" name="song_album" placeholder="Album"><br>
+			<input type="text" name="song_number" placeholder="Album number"><br>
+			<p>Release date: </p><input type="date" name="song_releasedate">
+			<input type="submit" name="Edit">
+		</fieldset>
+	</form>
 </body>
 </html>
