@@ -1,5 +1,16 @@
-from flask import Flask, send_file
-app = Flask(__name__)
+import os
+import flask 
+app = flask.Flask(__name__)
+
+@app.route("/upload", methods=["POST"])
+def upload():
+    user_file = flask.request.files.getlist("user_file")[0]
+    new_metadata = flask.request.form
+    print(new_metadata)
+    return flask.jsonify(new_metadata)
+
+#@app.route("handlefile")
+#def handlefile():
 
 
 @app.route("/hello")
@@ -10,7 +21,7 @@ def hello():
 @app.route("/")
 def main():
     index_path = os.path.join(app.static_folder, 'index.html')
-    return send_file(index_path)
+    return flask.send_file(index_path)
 
 
 # Everything not declared before (not a Flask route / API endpoint)...
@@ -20,11 +31,11 @@ def route_frontend(path):
     # doesn't use the `static` path (like in `<script src="bundle.js">`)
     file_path = os.path.join(app.static_folder, path)
     if os.path.isfile(file_path):
-        return send_file(file_path)
+        return flask.send_file(file_path)
         # ...or should be handled by the SPA's "router" in front end
     else:
         index_path = os.path.join(app.static_folder, 'index.html')
-        return send_file(index_path)
+        return flask.send_file(index_path)
 
 
 if __name__ == "__main__":
