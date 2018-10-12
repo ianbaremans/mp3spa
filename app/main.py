@@ -5,13 +5,13 @@ app = flask.Flask(__name__)
 @app.route("/upload", methods=["POST"])
 def upload():
     user_file = flask.request.files.getlist("user_file")[0]
-    new_metadata = flask.request.form
-    print(new_metadata)
+    new_metadata = handlefile(user_file)
     return flask.jsonify(new_metadata)
 
-#@app.route("handlefile")
-#def handlefile():
-
+def handlefile(bestandje):
+    print(bestandje)
+    return "hi"
+    
 
 @app.route("/hello")
 def hello():
